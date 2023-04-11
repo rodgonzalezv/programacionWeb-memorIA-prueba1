@@ -29,7 +29,10 @@
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogin">
             Ingresar
           </button>
-        <button type="button" class="btn btn-primary">Registro</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRegistro">
+            Registro
+          </button>          
+
         </div>
         </header>
       </div>
@@ -71,7 +74,45 @@
         </div>
       </div>
    
-
+      <!-- Modal Registro-->
+      <div class="modal fade" id="modalRegistro" tabindex="-1" aria-labelledby="modalRegistro" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content modal-dialog-centered">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Registro de usuario</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <main class="form-signin w-100 m-auto mx-auto">
+                <form>
+                  <img class="mb-4" src="img/logo1.png" alt="" width="300" padding>              
+                  <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Email</label>
+                  </div>
+                  <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Contraseña</label>
+                  </div>
+                  <div class="form-floating">
+                    <input type="repassword" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Confirme Contraseña</label>
+                  </div>              
+                  <div class="checkbox mb-3">
+                    <label>
+                      <input type="checkbox" value="recordarme"> Recordarme
+                    </label>
+                  </div>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                    Ingresar
+                  </button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </form>
+              </main>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 
