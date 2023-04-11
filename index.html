@@ -34,6 +34,10 @@
       </div>
 
 
+
+
+
+
       <div class="container">
         <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -70,8 +74,13 @@
             <h1 class="fw-light">Un homenaje para quienes ya partieron</h1>
             <p class="lead text-body-secondary">Nuestra empresa se dedica a honrar y preservar los recuerdos de tus seres queridos a través de memorias virtuales. Utilizamos la inteligencia artificial para recrear digitalmente a la persona fallecida, permitiendo a la familia y amigos interactuar con su legado de una manera única. Nuestro servicio ofrece una plataforma en línea donde los usuarios pueden crear un memorial virtual personalizado, compartiendo fotos, videos, historias y recuerdos especiales. Ofrecemos un espacio virtual seguro y conmovedor para recordar y mantener viva la memoria de aquellos que han partido. Nos enorgullece brindar una forma innovadora y emocionalmente significativa de mantener vivo el legado de los seres queridos, ofreciendo consuelo y apoyo a las familias en momentos difíciles.</p>
             <p>
-              <a href="saber-mas.html" class="btn btn-primary my-2">Quiero saber mas</a>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Saber más
+              </button>
+              
               <a href="contacto.html" class="btn btn-secondary my-2">Contactese con nosotros</a>
+
+
             </p>
           </div>
         </div>
@@ -113,6 +122,30 @@
         </div>
 
     </div>
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Saber más</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <video src="vid/intro.mp4" width="100%" controls autoplay>
+                Lo sentimos. Este vídeo no puede ser reproducido en tu navegador. 
+                </video>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+
 
     <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
