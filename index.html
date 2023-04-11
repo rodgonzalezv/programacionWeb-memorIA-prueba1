@@ -26,11 +26,56 @@
         </div>
         
         <div class="col-md-2 mb-2 mb-md-0">
-        <button type="button" class="btn btn-outline-primary me-2">Ingreso</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogin">
+            Ingresar
+          </button>
         <button type="button" class="btn btn-primary">Registro</button>
         </div>
         </header>
       </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLogin" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Ingreso al sistema</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+              <main class="form-signin w-100 m-auto">
+                <form>
+                  <img class="mb-4" src="img/logo1.png" alt="" width="300">              
+                  <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Email</label>
+                  </div>
+                  <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Contraseña</label>
+                  </div>
+              
+                  <div class="checkbox mb-3">
+                    <label>
+                      <input type="checkbox" value="recordarme"> Recordarme
+                    </label>
+                  </div>
+                  <button class="w-100 btn btn-lg btn-primary" type="submit">Ingresar</button>
+                </form>
+              </main>
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
 
 
 
@@ -73,7 +118,7 @@
             <h1 class="fw-light">Un homenaje para quienes ya partieron</h1>
             <p class="lead text-body-secondary">Nuestra empresa se dedica a honrar y preservar los recuerdos de tus seres queridos a través de memorias virtuales. Utilizamos la inteligencia artificial para recrear digitalmente a la persona fallecida, permitiendo a la familia y amigos interactuar con su legado de una manera única. Nuestro servicio ofrece una plataforma en línea donde los usuarios pueden crear un memorial virtual personalizado, compartiendo fotos, videos, historias y recuerdos especiales. Ofrecemos un espacio virtual seguro y conmovedor para recordar y mantener viva la memoria de aquellos que han partido. Nos enorgullece brindar una forma innovadora y emocionalmente significativa de mantener vivo el legado de los seres queridos, ofreciendo consuelo y apoyo a las familias en momentos difíciles.</p>
             <p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSaberMas">
                 Saber más
               </button>
               
@@ -124,7 +169,7 @@
 
 
       <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="modalSaberMas" tabindex="-1" aria-labelledby="modalSaberMas" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
@@ -144,6 +189,10 @@
       </div>
       
       
+
+
+
+
 
 
     <div class="container">
