@@ -80,36 +80,36 @@
         <form method="POST" id="frmRegistro" class="row g-2 mt-3">
             <div class="col-6">
                 <label for="inputName" class="form-label">Nombre:</label>
-                <input type="text" class="form-control" id="inputName" placeholder="Ingrese nombre">
+                <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Ingrese nombre">
             </div>
             <div class="col-6">
                 <label for="inputApellido" class="form-label">Apellido:</label>
-                <input type="text" class="form-control" id="inputApellido" placeholder="Ingrese apellido">
+                <input type="text" class="form-control" id="inputApellido" name="inputApellido" placeholder="Ingrese apellido">
             </div>
             <div class="col-6">
                 <label for="inputEmail" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="inputEmail" placeholder="Ingrese su email">
+                <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Ingrese su email">
             </div>
             <div class="col-6">
               <label for="inputReEmail" class="form-label">Reingrese Email:</label>
-              <input type="email" class="form-control" id="inputReEmail" placeholder="Reingrese su email">
+              <input type="email" class="form-control" id="inputReEmail" name="inputReEmail" placeholder="Reingrese su email">
           </div>
             <div class="col-6">
                 <label for="inputPass" class="form-label">Contraseña:</label>
-                <input type="password" class="form-control" id="inputPass" placeholder="Ingrese contraseña">
+                <input type="password" class="form-control" id="inputPass" name="inputPass" placeholder="Ingrese contraseña">
             </div>
             <div class="col-6">
               <label for="inputRePass" class="form-label">Reingrese contraseña:</label>
-              <input type="password" class="form-control" id="inputRePass" placeholder="Reingrese contraseña">
+              <input type="password" class="form-control" id="inputRePass" name="inputRePass" placeholder="Reingrese contraseña">
             </div>            
             <div class="col-12">
                 <label for="inputDir" class="form-label">Dirección:</label>
-                <input type="text" class="form-control" id="inputDir" placeholder="Ingrese su dirección">
+                <input type="text" class="form-control" id="inputDir" name="inputDir" placeholder="Ingrese su dirección">
             </div>
             <div class="col-4">
-              <label for="pais" class="form-label">País:</label>    
+              <label for="inputPais" class="form-label" >País:</label>    
             <br>            
-            <select class="form-control">
+            <select class="form-control" id="inputPais" name="inputPais">
               <option value="">Seleccione un país</option>
               <option value="Argentina">Argentina</option>
               <option value="Bolivia">Bolivia</option>
@@ -134,12 +134,12 @@
             </select>
           </div>
             <div class="col-4">
-                <label for="inputCity" class="form-label">Ciudad:</label>
-                <input type="text" class="form-control" id="inputCity" placeholder="Ingrese ciudad">
+                <label for="inputCiudad" class="form-label">Ciudad:</label>
+                <input type="text" class="form-control" id="inputCiudad" name="inputCiudad" placeholder="Ingrese ciudad">
             </div>
             <div class="col-4">
                 <label for="inputComuna" class="form-label">Comuna:</label>
-                <input type="text" class="form-control" id="inputComuna" placeholder="Ingrese comuna">
+                <input type="text" class="form-control" id="inputComuna" name="inputComuna" placeholder="Ingrese comuna">
             </div>
             <div class="col-4">
               <label for="inputFechaNac" class="form-label">Fecha de nacimiento: </label>
@@ -150,16 +150,11 @@
                 <label for="checkTerms">Acepto los términos y condiciones</label>
             </div>
             <div class="col-12">
-              <a href="index.html" class="btn btn-primary">Registrarse</a>       
-              
+              <button type="submit" class="btn btn-primary">Registrarse</button>
             </div>
         </form>
 
     </div>
-
-
-        
-
 
     <div class="container">
         <hr class="featurette-divider" style="margin-top: 100px;">
