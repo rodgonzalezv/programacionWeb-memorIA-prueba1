@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>memorIA</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">    
 </head>
 <body>
@@ -77,6 +78,37 @@
       <!-- Modal Registro-->
      
 
+<script>
+$.get('https://mindicador.cl/api', function(data) {
+    var indicadores = data;
+    var valorUF = data.uf.valor*0.8;
+    var valorDolar = data.dolar.valor;
+    var valorBitcoin = data.bitcoin.valor;
+  
+    var plan1UF = valorUF;
+    var plan1Dolar = valorUF/valorDolar;
+    var plan1Bitcoin = plan1Dolar/valorBitcoin;
+  
+    var plan2UF = valorUF*2;
+    var plan2Dolar = (valorUF/valorDolar)*2;
+    var plan2Bitcoin = (plan2Dolar/valorBitcoin)*2;
+
+    $("#plan1UF").text('$'+plan1UF.toFixed(0));
+    $("#plan1Dolar").text('US$'+plan1Dolar.toFixed(2));
+    $("#plan1Bitcoin").text('BTC '+plan1Bitcoin.toFixed(10));
+  
+    $("#plan2UF").text('$'+plan2UF.toFixed(0));
+    $("#plan2Dolar").text('US$'+plan2Dolar.toFixed(2));
+    $("#plan2Bitcoin").text('BTC '+plan2Bitcoin.toFixed(10));
+  
+
+   
+
+}).fail(function() {
+    console.log('Error al consumir la API!');
+});
+  
+</script>
 
 
   <div class="container">
@@ -92,8 +124,14 @@
                         <li>• Compartir fotos y videos del ser querido fallecido.</li>
                         <li>• Interacción con la inteligencia artificial para recrear digitalmente a la persona.</li>
                     </ul>
-                    <p class="text-center">$29.990/mes</p>
-                    <a href="#" class="btn btn-primary btn-block">Seleccionar</a>
+                    <p class="text-center">
+                      <span id="UF">0,8 UF</span><br>
+                      <span id="plan1UF"></span><br>
+                      <span id="plan1Dolar"></span><br>
+                      <span id="plan1Bitcoin"></span><br><br>
+                      <a href="#" class="btn btn-primary btn-block">Seleccionar</a>
+                    </p>
+
                 </div>
             </div>
         </div>
@@ -107,8 +145,13 @@
                         <li>• Mayor capacidad de almacenamiento para fotos y videos.</li>
                         <li>• Acceso a características exclusivas.</li>
                     </ul>
-                    <p class="text-center">$49.990/mes</p>
-                    <a href="#" class="btn btn-primary btn-block">Seleccionar</a>
+                    <p class="text-center">
+                      <span id="UF">1,6 UF</span><br>
+                      <span id="plan2UF"></span><br>
+                      <span id="plan2Dolar"></span><br>
+                      <span id="plan2Bitcoin"></span><br><br>
+                      <a href="#" class="btn btn-primary btn-block">Seleccionar</a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -125,8 +168,8 @@
                 <li>• Herramientas avanzadas de administración y colaboración.</li>
                 <li>• Soporte prioritario al cliente.</li>
                 </ul>
-                <p class="text-center">¡Contáctanos!</p>
-                <a href="#" class="btn btn-primary btn-block">Seleccionar</a>
+                <p class="text-center">¡Contáctanos!<br><br><a href="#" class="btn btn-primary btn-block">Seleccionar</a></p>
+                
             </div>
         </div>
     </div>
