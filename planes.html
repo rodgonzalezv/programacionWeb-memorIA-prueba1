@@ -9,75 +9,69 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">    
 </head>
 <body>
- 
-
-    <div class="container">
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-          <div class="col-md-3 mb-2 mb-md-0">
-            <a href="index.html" class="d-inline-flex link-body-emphasis text-decoration-none">
-            <img src="img/logo1.png" width="80%" class="img-fluid">
-            </a>
-          </div>
-          <div class="col-md-7 mb-2 mb-md-0">
-          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="index.html" class="nav-link px-2">Inicio</a></li>
-            <li><a href="quienes-somos.html" class="nav-link px-2">Quienes Somos</a></li>
-            <li><a href="planes.html" class="nav-link px-2 link-dark">Planes</a></li>
-            <li><a href="galeria.html" class="nav-link px-2">Galeria</a></li>
-            <li><a href="contacto.html" class="nav-link px-2">Contactenos</a></li>
-          </ul>
-        </div>
-        
-        <div class="col-md-2 mb-2 mb-md-0">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogin">
-            Ingresar
-          </button>
-          <a href="formularioRegistro.html" class="btn btn-secondary">Registro</a>       
-
-        </div>
-        </header>
+  <div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a href="index.html" class="d-inline-flex link-body-emphasis text-decoration-none">
+          <img src="img/logo1.png" width="80%" class="img-fluid">
+        </a>
       </div>
+      <div class="col-md-7 mb-2 mb-md-0">
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="index.html" class="nav-link px-2">Inicio</a></li>
+          <li><a href="quienes-somos.html" class="nav-link px-2">Quienes Somos</a></li>
+          <li><a href="planes.html" class="nav-link px-2 link-dark">Planes</a></li>
+          <li><a href="galeria.html" class="nav-link px-2">Galeria</a></li>
+          <li><a href="contacto.html" class="nav-link px-2">Contactenos</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-md-2 mb-2 mb-md-0">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogin">
+          Ingresar
+        </button>
+        <a href="formularioRegistro.html" class="btn btn-secondary">Registro</a>       
+      </div>
+    </header>
+  </div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLogin" aria-hidden="true">
-        <div class="modal-dialog modal-md">
-          <div class="modal-content modal-dialog-centered">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Ingreso al sistema</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <main class="form-signin w-100 m-auto mx-auto">
-                <form>
-                  <img class="mb-4" src="img/logo1.png" alt="" width="300" padding>              
-                  <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Email</label>
-                  </div>
-                  <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Contraseña</label>
-                  </div>
-              
-                  <div class="checkbox mb-3">
-                    <label>
-                      <input type="checkbox" value="recordarme"> Recordarme
-                    </label>
-                  </div>
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogin">
-                    Ingresar
-                  </button>
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </form>
-              </main>
-            </div>
-          </div>
+    <!-- Modal -->
+  <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLogin" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content modal-dialog-centered">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Ingreso al sistema</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <main class="form-signin w-100 m-auto mx-auto">
+            <form>
+              <img class="mb-4" src="img/logo1.png" alt="" width="300" padding>              
+              <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email</label>
+              </div>
+              <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Contraseña</label>
+              </div>
+            
+              <div class="checkbox mb-3">
+                <label>
+                  <input type="checkbox" value="recordarme"> Recordarme
+                </label>
+              </div>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                Ingresar
+              </button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </form>
+          </main>
         </div>
       </div>
-   
-      <!-- Modal Registro-->
-     
-
+    </div>
+  </div>
+  
 <script>
 $.get('https://mindicador.cl/api', function(data) {
     var indicadores = data;
@@ -102,13 +96,6 @@ $.get('https://mindicador.cl/api', function(data) {
     $("#plan2Bitcoin").text('BTC '+plan2Bitcoin.toFixed(10));
   
 
-   
-
-}).fail(function() {
-    console.log('Error al consumir la API!');
-});
-  
-</script>
 
 
   <div class="container">
@@ -124,14 +111,8 @@ $.get('https://mindicador.cl/api', function(data) {
                         <li>• Compartir fotos y videos del ser querido fallecido.</li>
                         <li>• Interacción con la inteligencia artificial para recrear digitalmente a la persona.</li>
                     </ul>
-                    <p class="text-center">
-                      <span id="UF">0,8 UF</span><br>
-                      <span id="plan1UF"></span><br>
-                      <span id="plan1Dolar"></span><br>
-                      <span id="plan1Bitcoin"></span><br><br>
-                      <a href="#" class="btn btn-primary btn-block">Seleccionar</a>
-                    </p>
-
+                    <p class="text-center">$29.990/mes</p>
+                    <a href="#" class="btn btn-primary btn-block">Seleccionar</a>
                 </div>
             </div>
         </div>
@@ -145,13 +126,8 @@ $.get('https://mindicador.cl/api', function(data) {
                         <li>• Mayor capacidad de almacenamiento para fotos y videos.</li>
                         <li>• Acceso a características exclusivas.</li>
                     </ul>
-                    <p class="text-center">
-                      <span id="UF">1,6 UF</span><br>
-                      <span id="plan2UF"></span><br>
-                      <span id="plan2Dolar"></span><br>
-                      <span id="plan2Bitcoin"></span><br><br>
-                      <a href="#" class="btn btn-primary btn-block">Seleccionar</a>
-                    </p>
+                    <p class="text-center">$49.990/mes</p>
+                    <a href="#" class="btn btn-primary btn-block">Seleccionar</a>
                 </div>
             </div>
         </div>
@@ -168,83 +144,58 @@ $.get('https://mindicador.cl/api', function(data) {
                 <li>• Herramientas avanzadas de administración y colaboración.</li>
                 <li>• Soporte prioritario al cliente.</li>
                 </ul>
-                <p class="text-center">¡Contáctanos!<br><br><a href="#" class="btn btn-primary btn-block">Seleccionar</a></p>
-                
+                <p class="text-center">¡Contáctanos!</p>
+                <a href="#" class="btn btn-primary btn-block">Seleccionar</a>
             </div>
         </div>
     </div>
+  </div>
+  <p class="text-center mt-5">Regístrate hoy mismo y honra a tus seres queridos de una manera única y significativa con memorIA.
+  </p>
 </div>
-
-    <p class="text-center mt-5">Regístrate hoy mismo y honra a tus seres queridos de una manera única y
-        significativa con memorIA.</p>
-</div>
-
-
-
-  
-
-    
-
-
-
-
-
-
-<div class="container">
-    <hr class="featurette-divider" style="margin-top: 100px;">
-    <div class="row">
-
-
-      <div class="col-4 mx-auto">
-        <p class="lead text-body-secondary">
+<hr class="featurette-divider" style="margin-top: 100px;">
+<div class="row">
+  <div class="col-4 mx-auto">
+    <p class="lead text-body-secondary">
           "Preservamos recuerdos con IA. Contáctanos para crear un memorial virtual personalizado y mantener vivo el legado de tus seres queridos."
-        </p>
-        <p>
+    </p>
+  </div>
+  <div class="col-2 mx-auto">
+    <ul class="nav flex-column">
+      <li class="nav-item mb-2"><a href="index.html" class="nav-link">Inicio</a></li>
+      <li class="nav-item mb-2"><a href="quienes-somos.html" class="nav-link">Quienes Somos</a></li>
+      <li class="nav-item mb-2"><a href="planes.html" class="nav-link link-dark">Planes</a></li>
+      <li class="nav-item mb-2"><a href="galeria.html" class="nav-link">Galeria</a></li>
+      <li class="nav-item mb-2"><a href="contacto.html" class="nav-link">Contactenos</a></li>
+    </ul>
+  </div>
+  <div class="col-5">
+    <form>
+      <h5>Ten noticias nuestras</h5>
+      <p>Dejanos tu correo y te enviaremos noticias de nuestros servicios.</p>
+      <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+        <label for="newsletter1" class="visually-hidden">Email</label>
+        <input id="newsletter1" type="text" class="form-control" placeholder="Correo Electronico">
+        <button class="btn btn-primary" type="button">Suscribase</button>
       </div>
-
-      <div class="col-2 mx-auto">
-        <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="index.html" class="nav-link">Inicio</a></li>
-          <li class="nav-item mb-2"><a href="quienes-somos.html" class="nav-link">Quienes Somos</a></li>
-          <li class="nav-item mb-2"><a href="planes.html" class="nav-link link-dark">Planes</a></li>
-          <li class="nav-item mb-2"><a href="galeria.html" class="nav-link">Galeria</a></li>
-          <li class="nav-item mb-2"><a href="contacto.html" class="nav-link">Contactenos</a></li>
-        </ul>
-      </div>
-
-      <div class="col-5">
-        <form>
-          <h5>Ten noticias nuestras</h5>
-          <p>Dejanos tu correo y te enviaremos noticias de nuestros servicios.</p>
-          <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-            <label for="newsletter1" class="visually-hidden">Email</label>
-            <input id="newsletter1" type="text" class="form-control" placeholder="Correo Electronico">
-            <button class="btn btn-primary" type="button">Suscribase</button>
-          </div>
-        </form>
-      </div>
+    </form>
+  </div>
+</div>
+<div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="mb-3 mb-md-0 text-body-secondary">© 2023 MemorIA SpA, Santiago - Chile</span>
     </div>
 
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+      <li class="ms-3"><a class="text-body-secondary" href="#">Twitter</a></li>
+      <li class="ms-3"><a class="text-body-secondary" href="#">Instagram</a></li>
+    </ul>
+  </footer>
 </div>
-
-
-
-  
-<div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-      <div class="col-md-4 d-flex align-items-center">
-        <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-          <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-        </a>
-        <span class="mb-3 mb-md-0 text-body-secondary">© 2023 MemorIA SpA, Santiago - Chile</span>
-      </div>
-
-      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li class="ms-3"><a class="text-body-secondary" href="#">Twitter</a></li>
-        <li class="ms-3"><a class="text-body-secondary" href="#">Instagram</a></li>
-      </ul>
-    </footer>
-  </div>
 
 
 
