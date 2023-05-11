@@ -179,7 +179,7 @@
                 var imageContainer = `
                   <div class="col-md-3 mb-4">
                     <div class="image-container">
-                      <img id="imagen-galeria" class="imagen" src="${imageUrl}" onclick="javascript:cargar_foto(${imageUrl})" alt="Foto" data-bs-toggle="modal" data-bs-target="#modalDetalle">
+                      <img id="imagen-galeria" class="imagen" src="${imageUrl}" onclick="javascript:document.getElementById('imagen-modal-img').src='${imageUrl}'" alt="Foto" data-bs-toggle="modal" data-bs-target="#modalDetalle">
                     </div>
                   </div>
                 `;
