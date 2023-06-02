@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 # Create your models here.
-class familiar(models.Model):
+class Familiar(models.Model):
     parentezco_choices = (
         ('MA','Madre'),
         ('PA','Padre'),
@@ -22,7 +22,7 @@ class familiar(models.Model):
     def __str__(self):
         return self.nombre + ' '  + self.apellidos
 
-class plan(models.Model):
+class Plan(models.Model):
     nombre = models.CharField(max_length=50)
     precio = models.IntegerField()
     cantidad = models.IntegerField(verbose_name='Cantidad Familiares')
@@ -31,8 +31,8 @@ class plan(models.Model):
         return self.nombre + ' $' + str(self.precio)
 
 
-class plan_cliente(models.Model):
-    plan = models.ForeignKey(plan, on_delete=models.CASCADE)
+class PlanCliente(models.Model):
+    plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
     fecha_inicio = models.DateField()
     fecha_termino = models.DateField()
 
