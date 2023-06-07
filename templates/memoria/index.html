@@ -53,10 +53,14 @@
                     </li>
                 </ul>
                 <div class="d-flex">
+                {% if user.is_authenticated %}
+                    <p>Bienvenido {{ request.user.username }}
+                {% else %}
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogin">
                         Ingresar
                     </button>&nbsp;
                     <a href="formularioRegistro.html" class="btn btn-secondary">Registro</a>
+                {% endif %}
                 </div>
             </div>
         </div>
