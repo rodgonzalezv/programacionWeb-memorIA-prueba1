@@ -3,7 +3,6 @@ from .models import Familiar, Plan, PlanCliente
 
 # Create your views here.
 def home(request):
-    # Toda la logica que quieran! 
     return render(request, "memoria/home.html")
 
 def quienes_somos(request):
