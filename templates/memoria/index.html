@@ -35,21 +35,21 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link" style="font-size: 18px; font-weight: bold; color:#336699;"
+                        <a class="nav-link" style="font-size: 18px;{% if request.path == '/' %}font-weight: bold; color:#336699; {% endif %}"
                             href="{% url 'home' %}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="font-size: 18px; color:black;" href="{% url 'quienes_somos' %}">Quienes
+                        <a class="nav-link" style="font-size: 18px; {% if request.path == '/quienes_somos' %}font-weight: bold; color:#336699; {% endif %}" href="{% url 'quienes_somos' %}">Quienes
                             Somos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="font-size: 18px; color:black;" href="{% url 'planes' %}">Planes</a>
+                        <a class="nav-link" style="font-size: 18px; {% if request.path == '/planes' %}font-weight: bold; color:#336699; {% endif %}" href="{% url 'planes' %}">Planes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="font-size: 18px; color:black;" href="{% url 'galeria' %}">Galeria</a>
+                        <a class="nav-link" style="font-size: 18px; {% if request.path == '/galeria' %}font-weight: bold; color:#336699; {% endif %}" href="{% url 'galeria' %}">Galeria</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="font-size: 18px; color:black;" href="{% url 'contacto' %}">Contacto</a>
+                        <a class="nav-link" style="font-size: 18px; {% if request.path == '/contacto' %}font-weight: bold; color:#336699; {% endif %}" href="{% url 'contacto' %}">Contacto</a>
                     </li>
                 </ul>
                 <div class="d-flex">
