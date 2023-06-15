@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Familiar, Plan, PlanCliente
+from .models import Memorial
 
 # Create your views here.
 def home(request):
@@ -17,5 +17,8 @@ def galeria(request):
 
 def contacto(request):
     return render(request, "memoria/contacto.html")
+
+def dashboard(request):
+    return render(request, "memoria/dashboard.html")
 
 

@@ -1,7 +1,4 @@
 from django.contrib import admin
-from .models import Familiar, Plan, PlanCliente
-
+from .models import Memorial
 # Register your models here.
-admin.site.register(Familiar)
-admin.site.register(Plan)
-admin.site.register(PlanCliente)
+admin.site.register(Memorial)
