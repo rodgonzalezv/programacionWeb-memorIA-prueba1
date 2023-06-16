@@ -1,108 +1,39 @@
 {% extends 'memoria/index.html' %} 
+{% load mathfilters %}
+{% load humanize %}
 {% block content %}
 
-
-<script>
-    $.get('https://mindicador.cl/api', function (data) {
-      var indicadores = data;
-      var valorUF = data.uf.valor * 0.8;
-      var valorDolar = data.dolar.valor;
-      var valorBitcoin = data.bitcoin.valor;
-
-      var plan1UF = valorUF;
-      var plan1Dolar = valorUF / valorDolar;
-      var plan1Bitcoin = plan1Dolar / valorBitcoin;
-
-      var plan2UF = valorUF * 2;
-      var plan2Dolar = (valorUF / valorDolar) * 2;
-      var plan2Bitcoin = (plan2Dolar / valorBitcoin) * 2;
-
-      $("#plan1UF").text('$' + plan1UF.toFixed(0));
-      $("#plan1Dolar").text('US$' + plan1Dolar.toFixed(2));
-      $("#plan1Bitcoin").text('BTC ' + plan1Bitcoin.toFixed(10));
-
-      $("#plan2UF").text('$' + plan2UF.toFixed(0));
-      $("#plan2Dolar").text('US$' + plan2Dolar.toFixed(2));
-      $("#plan2Bitcoin").text('BTC ' + plan2Bitcoin.toFixed(10));
-
-
-    }).fail(function () {
-      console.log('Error al consumir la API!');
-    });
-
-  </script>
 
   <div class="container">
     <h1 class="text-center">Estos son nuestros planes</h1>
     <p class="text-center"> Brindemos un conmemorativo homenaje a quienes ya partieron</p>
     <div class="row mt-5 d-flex align-items-stretch">
+
+      {% for c in planes %} 
       <div class="col-md-4">
         <div class="card">
           <div>
-            <h5 class="card-title">Plan Básico</h5>
+            <h5 class="card-title">{{c.nombre}}</h5>
             <ul class="list-unstyled">
-              <div class="card-body">
-                <li>• Creación de un memorial virtual personalizado.</li>
-                <li>• Compartir fotos y videos del ser querido fallecido.</li>
-                <li>• Interacción con la inteligencia artificial para recrear digitalmente a la persona.</li>
+              <div class="card-body" style="height:200px; border:1px solid #black">
+                {{c.descripcion}}
               </div>
             </ul>
             <p class="text-center">
-              <span id="UF">0,8 UF</span><br>
-              <span id="plan1UF"></span><br>
-              <span id="plan1Dolar"></span><br>
-              <span id="plan1Bitcoin"></span><br><br>
-              <a href="#" class="btn btn-primary btn-block btn-seleccionar">Seleccionar</a>
-            </p>
-
+            {{ c.valor_factor }} UF (${{uf|mul:c.valor_factor|floatformat:0|intcomma }})<br>
+            USD {{ uf|div:dolar|mul:c.valor_factor|floatformat:0 }}<br>
+            BTC {{  bitcoin|div:uf|div:dolar|mul:c.valor_factor|floatformat:5 }}<br>
+            <a href="#" class="btn btn-primary btn-block btn-seleccionar">Seleccionar</a>
+            </p>            
           </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div>
-            <h5 class="card-title">Plan Premium</h5>
-            <ul class="list-unstyled">
-              <div class="card-body">
-                <li>• Todo lo del Plan Básico.</li>
-                <li>• Opción de personalizar el diseño del memorial virtual.</li>
-                <li>• Mayor capacidad de almacenamiento para fotos y videos.</li>
-                <li>• Acceso a características exclusivas.</li>
-              </div>
-            </ul>
-            <p class="text-center">
-              <span id="UF">1,6 UF</span><br>
-              <span id="plan2UF"></span><br>
-              <span id="plan2Dolar"></span><br>
-              <span id="plan2Bitcoin"></span><br><br>
-              <a href="#" class="btn btn-primary btn-block btn-seleccionar">Seleccionar</a>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div>
-            <h5 class="card-title">Plan Empresarial</h5>
-            <ul class="list-unstyled">
-              <div class="card-body">
-                <li>• Todo lo del Plan Premium.</li>
-                <li>• Opción de tener múltiples memorials virtuales.</li>
-                <li>• Herramientas avanzadas de administración y colaboración.</li>
-                <li>• Soporte prioritario al cliente.</li>
+      </div>   
+      
+      
+      {% endfor %}
 
-                <li>• Herramientas avanzadas de administración y colaboración.</li>
-                <li>• Soporte prioritario al cliente.</li>
-              </div>
-            </ul>
-            <p class="text-center">¡Contáctanos!<br><br><a href="#"
-                class="btn btn-primary btn-block btn-seleccionar">Seleccionar</a>
-            </p>
 
-          </div>
-        </div>
-      </div>
-    </div>
+
 
     <script>
       window.addEventListener('load', function () {

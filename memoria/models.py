@@ -20,6 +20,8 @@ class Planes(models.Model):
     id_plan=models.AutoField(primary_key=True)
     nombre=models.CharField(max_length=50)
     descripcion=models.TextField()
+    cantidad = models.IntegerField()
+    valor_factor = models.IntegerField()
     
 
     
