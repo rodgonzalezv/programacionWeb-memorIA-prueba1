@@ -72,3 +72,10 @@ class Familiares(models.Model):
 
     def __str__(self):
         return self.nombre_familiar, self.apellidos_familiar
+
+class Roles(models.Model):
+    id_rol=models.AutoField(primary_key=True)
+    nombre_rol=models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nombre_rol
