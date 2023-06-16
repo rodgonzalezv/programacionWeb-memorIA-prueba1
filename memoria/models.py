@@ -79,3 +79,10 @@ class Roles(models.Model):
 
     def __str__(self):
         return self.nombre_rol
+
+class Recuerdos(models.Model):
+    id_recuerdo=models.AutoField(primary_key=True)
+    descripcion_recuerdo=models.TextField()
+
+    def __str__(self):
+        return 
