@@ -102,3 +102,11 @@ class Usuarios(models.Model):
 
     def __str__(self):
         return self.nombres, self.apellidos
+
+class Usuarios_Planes(models.Model):
+    id_plan_usuario=models.AutoField(primary_key=True)
+    id_plan=models.ForeignKey(Planes, on_delete=models.CASCADE)
+    id_usuario=models.ForeignKey(Usuarios, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Usuarios_Planes {self.fk}"
