@@ -1,6 +1,7 @@
 {
   "cSpell.words": [
     "apellidos",
+    "contraseña",
     "deceso",
     "descripcion",
     "Dominicana",
@@ -10,6 +11,7 @@
     "nacimiento",
     "NACIONALIDAD",
     "nombre",
+    "nombres",
     "Otra",
     "Panamá",
     "Perú",
@@ -19,6 +21,7 @@
     "República",
     "Rica",
     "TIPO",
+    "usuario",
     "Usuarios"
   ]
 }

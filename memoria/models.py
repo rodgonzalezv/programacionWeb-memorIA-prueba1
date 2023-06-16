@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.core.validators import MaxLengthValidator
+from django.contrib.auth.hashers import make_password
 
 class Memorial(models.Model):
     id_memorial=models.AutoField(primary_key=True)
@@ -82,7 +83,22 @@ class Roles(models.Model):
 
 class Recuerdos(models.Model):
     id_recuerdo=models.AutoField(primary_key=True)
+    nombre_recuerdo=models.CharField(max_length=100, default='Nombre Recuerdo')
     descripcion_recuerdo=models.TextField()
 
     def __str__(self):
-        return 
+        return self.nombre_recuerdo
+
+class Usuarios(models.Model):
+    id_usuario=models.AutoField(primary_key=True)
+    nombres = models.CharField(max_length=100)
+    apellidos = models.CharField(max_length=100)
+    email=models.EmailField()
+    contraseña = models.CharField(max_length=128)
+    rol = models.ForeignKey(Roles, on_delete=models.CASCADE)
+    
+    def set_password(self, raw_password):
+        self.contraseña = make_password(raw_password)
+
+    def __str__(self):
+        return self.nombres, self.apellidos
