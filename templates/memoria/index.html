@@ -58,9 +58,11 @@
                     <p>Bienvenido {{ request.user.username }}
                     </a>        
                 {% else %}
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                <a class="btn btn-primary" style="font-size: 18px;" href="{% url 'login' %}">Ingresar</a>
+
+                 <!--   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogin">
                         Ingresar
-                    </button>&nbsp;
+                    </button>-->&nbsp;
                     <a href="formularioRegistro.html" class="btn btn-secondary">Registro</a>
                 {% endif %}
                 </div>

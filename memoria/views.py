@@ -3,7 +3,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from .models import Memorial, Planes
 import requests
-from .forms import LoginForm
 
 
 
@@ -43,26 +42,16 @@ def contacto(request):
 def dashboard(request):
     return render(request, "memoria/dashboard.html")
 
-def iniciar_sesion(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('dashboard')
-            else:
-                form.add_error(None, 'Nombre de usuario o contraseña incorrectos.')
-    else:
-        form = LoginForm()
-    return render(request, 'index.html', {'form': form})
+def login(request):
+    return render(request, "memoria/login.html")
 
-
-def cerrar_sesion(request):
+def logout_user(request):
     logout(request)
-    return redirect('iniciar_sesion')
+    #return redirect("login")
+    return render(request, "memoria/logout.html")
+
+
+
 
 def vista_formulario(request):
     formulario = LoginForm()  # Crea una instancia del formulario
