@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView
-from .views import home, quienes_somos, planes, galeria, contacto, dashboard_view, login_view
-
+from .views import home, quienes_somos, planes, galeria, contacto, login_view, dashboard_view
 from . import views
 
 urlpatterns = [
@@ -12,5 +11,5 @@ urlpatterns = [
     path("galeria", galeria, name="galeria"),
     path("contacto", contacto, name="contacto"),
     path('login', LoginView.as_view(template_name='memoria/login.html'), name='login'),
-    path('dashboard', dashboard_view, name='dashboard'),
+    path('dashboard', LoginView.as_view(template_name='memoria/dashboard.html'), name='dashboard'),
 ]
