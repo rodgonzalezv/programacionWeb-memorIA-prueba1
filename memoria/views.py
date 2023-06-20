@@ -1,6 +1,8 @@
-from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
-from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from .models import Memorial, Planes
 import requests
 
@@ -39,20 +41,19 @@ def galeria(request):
 def contacto(request):
     return render(request, "memoria/contacto.html")
 
-def dashboard(request):
-    return render(request, "memoria/dashboard.html")
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            return render(request, 'login.html')
+    else:
+        return render(request, 'login.html')
 
-def login(request):
-    return render(request, "memoria/login.html")
-
-def logout_user(request):
-    logout(request)
-    #return redirect("login")
-    return render(request, "memoria/logout.html")
-
-
-
-
-def vista_formulario(request):
-    formulario = LoginForm()  # Crea una instancia del formulario
-    return render(request, 'formulario.html', {'form': formulario})
+@login_required
+def dashboard_view(request):
+    return render(request, 'dashboard.html')

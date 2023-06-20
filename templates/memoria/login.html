@@ -1,7 +1,9 @@
-{% extends 'memoria/index.html' %} 
-{% load static %}
-{% block content %}
-
-
-
-{% endblock %}
+<form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Nombre de usuario"><br>
+    <input type="password" name="password" placeholder="Contraseña"><br>
+    <input type="submit" value="Iniciar sesión">
+</form>
+{% if error %}
+    <p>{{ error }}</p>
+{% endif %}
