@@ -55,5 +55,5 @@ def login_view(request):
         return render(request, 'login.html')
 
 @login_required
-def dashboard_view(request):
+def dashboard(request):
     return render(request, 'dashboard.html')
