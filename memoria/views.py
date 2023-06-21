@@ -41,7 +41,7 @@ def galeria(request):
 def contacto(request):
     return render(request, "memoria/contacto.html")
 
-def login_view(request):
+def userLogin(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -50,10 +50,14 @@ def login_view(request):
             login(request, user)
             return redirect('dashboard')
         else:
-            return render(request, 'login.html')
+            return render(request, 'memoria/userLogin.html')
     else:
-        return render(request, 'login.html')
-
+        return render(request, 'memoria/userLogin.html')
+    
+def userLogout(request):
+    logout(request)
+    return redirect("userLogin")    
+    
 @login_required
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    return render(request, 'memoria/dashboard.html')

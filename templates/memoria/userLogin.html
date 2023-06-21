@@ -1,0 +1,39 @@
+{% extends 'memoria/index.html' %} 
+{% block content %}
+<style>
+    .abs-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40vh;
+      }
+      
+      .form {
+        width: 450px;
+      }
+
+
+</style>
+
+<div class="container">
+    <div class="abs-center">
+<form method="POST" action="{% url 'userLogin' %}">
+    {% csrf_token %}
+    <label for="floatingInput">Nombre de Usuario
+    <input type="text" name="username" placeholder="Nombre de usuario" class="form-control" id="floatingInput">
+    </label><br>
+    <label for="floatingInput">Contraseña
+    <input type="password" name="password" placeholder="Contraseña" class="form-control" id="floatingInput">
+    </label>
+    <div class="col text-center" style="margin:8px;">    
+    <input type="submit" value="Iniciar sesión" class="btn btn-primary center-block">
+    </div>
+</form>
+</div>
+</div>
+
+{% if error %}
+    <p>{{ error }}</p>
+{% endif %}
+
+{% endblock %}
