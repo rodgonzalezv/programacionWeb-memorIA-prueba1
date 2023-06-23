@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView
-from .views import home, quienes_somos, planes, galeria, contacto, userLogin, userLogout, dashboard, userRegistro
+from .views import home, quienes_somos, planes, galeria, contacto, userLogin, userLogout, dashboard, userRegistro, activar_cuenta
 from . import views
 
 urlpatterns = [
@@ -14,4 +14,5 @@ urlpatterns = [
     path('userLogin', userLogin, name='userLogin'),
     path('userLogout', userLogout, name='userLogout'),
     path('userRegistro', userRegistro, name='userRegistro'),
+    path('activar-cuenta/<int:user_id>/', views.activar_cuenta, name='activar_cuenta'),
 ]

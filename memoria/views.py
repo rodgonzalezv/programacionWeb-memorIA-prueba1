@@ -2,8 +2,11 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
 from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.core.mail import send_mail
+
 from .models import Memorial, Planes
 import requests
 from .forms import formUserRegistro
@@ -71,11 +74,35 @@ def userRegistro(request):
     if request.method == 'POST':
         form = formUserRegistro(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.is_active = False
+            user.save()
             group = Group.objects.get(name='Clientes')  
-            user.groups.add(group)            
+            user.groups.add(group)
+            activation_link = 'http://localhost:8000/activar-cuenta/' + str(user.id)
+            send_mail(
+                'Activa tu cuenta',
+                f'Haz clic en el siguiente enlace para activar tu cuenta: {activation_link}',
+                'noreply@tu-sitio.com',
+                [user.email],
+                fail_silently=False
+            )
+            
             return redirect('dashboard')  
     else:
         form = formUserRegistro()
 
     return render(request, 'memoria/userRegistro.html', {'userRegistro': form})
+
+
+User = get_user_model()
+
+def activar_cuenta(request, user_id):
+    try:
+        user = User.objects.get(id=user_id, is_active=False)
+        # Activa la cuenta del usuario
+        user.is_active = True
+        user.save()
+        return render(request, 'memoria/cuenta_activada.html')
+    except User.DoesNotExist:
+        return render(request, 'memoria/error_activacion.html')

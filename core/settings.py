@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.core.mail',
     'mathfilters',
     'django.contrib.humanize',
     'crispy_forms',
@@ -153,3 +154,11 @@ LOGIN_REDIRECT = "home"
 LOGOUT_REDIRECT_URL="home"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Servidor SMTP de Google
+EMAIL_PORT = 465  # Puerto del servidor SMTP de Google
+
+EMAIL_HOST_USER = 'memoria@virtual.cl'  # Dirección de correo electrónico de la cuenta de Google Workspace
+EMAIL_HOST_PASSWORD = 'Django#DuocUC'  # Contraseña de la cuenta de Google Workspace
+EMAIL_USE_SSL = True 
