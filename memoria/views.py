@@ -1,10 +1,12 @@
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import Group
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from .models import Memorial, Planes
 import requests
+from .forms import formUserRegistro
 
 
 
@@ -56,8 +58,24 @@ def userLogin(request):
     
 def userLogout(request):
     logout(request)
-    return redirect("userLogin")    
+    return redirect("userLogin")   
+
+def userRegistro(request):
+    return render(request, 'memoria/userRegistro.html') 
     
 @login_required
 def dashboard(request):
     return render(request, 'memoria/dashboard.html')
+
+def userRegistro(request):
+    if request.method == 'POST':
+        form = formUserRegistro(request.POST)
+        if form.is_valid():
+            user = form.save()
+            group = Group.objects.get(name='Clientes')  
+            user.groups.add(group)            
+            return redirect('dashboard')  
+    else:
+        form = formUserRegistro()
+
+    return render(request, 'memoria/userRegistro.html', {'userRegistro': form})

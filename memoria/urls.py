@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView
-from .views import home, quienes_somos, planes, galeria, contacto, userLogin, userLogout, dashboard
+from .views import home, quienes_somos, planes, galeria, contacto, userLogin, userLogout, dashboard, userRegistro
 from . import views
 
 urlpatterns = [
@@ -13,4 +13,5 @@ urlpatterns = [
     path("dashboard", dashboard, name="dashboard"),
     path('userLogin', userLogin, name='userLogin'),
     path('userLogout', userLogout, name='userLogout'),
+    path('userRegistro', userRegistro, name='userRegistro'),
 ]
