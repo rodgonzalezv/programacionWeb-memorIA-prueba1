@@ -19,5 +19,3 @@ urlpatterns = [
     path('cambiaPass/', CustomChangePasswordView.as_view(), name='cambiaPass'),
     path('cambiaPass/logout', userLogout, name='cambiaPass/logout'),
 ]
-
-
