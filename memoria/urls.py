@@ -18,4 +18,5 @@ urlpatterns = [
     path('activar-cuenta/<int:user_id>/', views.activar_cuenta, name='activar_cuenta'),
     path('cambiaPass/', CustomChangePasswordView.as_view(), name='cambiaPass'),
     path('cambiaPass/logout', userLogout, name='cambiaPass/logout'),
+    path('perfil', views.user_profile, name='perfil'),
 ]
