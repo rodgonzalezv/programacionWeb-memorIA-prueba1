@@ -24,9 +24,6 @@ class Planes(models.Model):
     descripcion=models.TextField()
     cantidad = models.IntegerField()
     valor_factor = models.IntegerField()
-    
-
-    
 
     class Meta:
         verbose_name = ("Planes")
@@ -109,6 +106,7 @@ class Usuarios_Planes(models.Model):
     id_plan_usuario=models.AutoField(primary_key=True)
     id_plan=models.ForeignKey(Planes, on_delete=models.CASCADE)
     id_usuario=models.ForeignKey(Usuarios, on_delete=models.CASCADE)
+    estado_plan=models.IntegerField()
 
     def __str__(self):
         return f"Usuarios_Planes {self.fk}"
