@@ -35,7 +35,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
                         <a class="nav-link" style="font-size: 18px;{% if request.path == '/' %}font-weight: bold; color:#336699; {% endif %}"
-                            href="{% url 'home' %}">Perfil</a>
+                            href="">Perfil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" style="font-size: 18px; {% if request.path == '/quienes_somos' %}font-weight: bold; color:#336699; {% endif %}" href="{% url 'quienes_somos' %}">Familiares</a>
@@ -63,38 +63,7 @@
         </div>
     </nav>
 
-    <!-- Modal -->
-    <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLogin" aria-hidden="true">
-        <div class="modal-dialog modal-md">
-            <div class="modal-content modal-dialog-centered">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ingreso al sistema</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <main class="form-signin w-100 m-auto mx-auto">
-                        <form name="formLogin" action="{% url 'dashboard' %} id="formLogin" method="post">
-                            {% csrf_token %}
-                            <img class="mb-4" src="{% static '/img/logo1.png' %}" alt="" width="300" padding>
-                            <div>
-                                <input type="text" class="form-control" id="floatingPassword" name="username">
-                            </div>
-                            <div >
-                                <input type="password" class="form-control" id="floatingPassword" name="password">
-                            </div>
-                            <button type="submit" id="botonLogin" class="btn btn-primary" data-bs-dismiss="modal"
-                                >Ingresar</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        </form>
-                    </main>
-                </div>
-            </div>
-        </div>
-    </div>
 
-
-
-    <!-- Modal Registro-->
 
     <div class="container">
     {% block content %}

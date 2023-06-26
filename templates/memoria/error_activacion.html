@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Error de activación</title>
-</head>
-<body>
+{% extends 'memoria/index.html' %} 
+{% load mathfilters %}
+{% load humanize %}
+{% block content %}
+<hr class="featurette-divider" style="margin-top: 100px;">
     <h1>Error de activación</h1>
-    <p>No se pudo activar tu cuenta. Por favor, verifica que el enlace de activación sea válido.</p>
-</body>
-</html>
+    <p>No se pudo activar tu cuenta. </p>
+    <p>Puede que exista un error en el link o bien que ya haya sido usado anteriormente. </p>
+    <hr class="featurette-divider" style="margin-top: 100px;">
+
+{% endblock %}

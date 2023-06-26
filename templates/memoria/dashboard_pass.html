@@ -1,4 +1,4 @@
-{% extends 'memoria/index.html' %} 
+{% extends 'memoria/dashboard_base.html' %} 
 {% load crispy_forms_tags %}
 {% block content %}
 <style>
@@ -18,13 +18,10 @@
 <div class="container">
     <div class="abs-center">
 
-
-        <form method="post"><h2>Registro de Usuario</h2>
+        <form method="post">
             {% csrf_token %}
-            {% crispy userRegistro %}
-        </form>
-        
-          
+            {% crispy form %}
+          </form>
           
     </div>
 </div>
