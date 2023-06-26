@@ -10,14 +10,12 @@ from django.core.mail import send_mail
 from django.urls import reverse_lazy
 from .models import Memorial, Planes
 import requests
-from .forms import formUserRegistro, CustomChangePasswordForm, CustomChangePasswordForma
+from .forms import formUserRegistro, CustomChangePasswordForm, UserProfileForm
 
 
 
-
-# Create your views here.
 def home(request):
-    # Toda la logica que quieran! 
+
     return render(request, "memoria/home.html")
 
 def quienes_somos(request):
@@ -124,7 +122,7 @@ def activar_cuenta(request, user_id):
     
 
 class CustomChangePasswordView(PasswordChangeView):
-    form_class = CustomChangePasswordForma
+    form_class = CustomChangePasswordForm
     template_name = 'memoria/dashboard_pass.html'
     success_url = reverse_lazy('userLogout')
     def form_valid(self, form):
@@ -132,4 +130,15 @@ class CustomChangePasswordView(PasswordChangeView):
         messages.success(self.request, 'Contraseña cambiada correctamente.')
         logout(self.request)
         return response
+    
+@login_required
+def user_profile(request):
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    else:
+        form = UserProfileForm(instance=request.user)
+    return render(request, 'memoria/dashboard_perfil.html', {'form': form})
     

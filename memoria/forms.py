@@ -1,8 +1,9 @@
 from django import forms
+from django.forms import PasswordInput
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, UserChangeForm
 
 UserModel = get_user_model()
 
@@ -17,18 +18,24 @@ class formUserRegistro(UserCreationForm):
         self.helper = FormHelper()
         self.helper.form_class = 'form-control'
         self.helper.form_method = 'post'
-        self.helper.add_input(Submit('submit', 'Registrar'))
+        self.helper.add_input(Submit('submit', 'Registrarse como Usuario'))
 
 class CustomChangePasswordForm(PasswordChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        self.helper.add_input(Submit('submit', 'Guardar cambios'))
+        self.helper.add_input(Submit('submit', 'Cambiar Contraseña'))
         
-class CustomChangePasswordForma(PasswordChangeForm):
+class UserProfileForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_method = 'post'
-        self.helper.add_input(Submit('submit', 'Guardara cambios'))
+        self.fields['password'].widget = PasswordInput(render_value=False)
+    
+    helper = FormHelper()
+    helper.form_method = 'POST'
+    helper.add_input(Submit('submit', 'Guardar perfil'))
+
+    class Meta:
+        model = UserModel
+        fields = ['username','first_name', 'last_name']

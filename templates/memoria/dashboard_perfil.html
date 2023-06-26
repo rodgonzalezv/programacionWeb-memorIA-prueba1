@@ -16,16 +16,19 @@
 </style>
 
 <div class="container">
+    <h1>Perfil de Usuario</h1>
     <div class="abs-center">
 
-
-
+        <form method="post">
+            {% csrf_token %}
+            {% crispy form %}
+          </form>
           
     </div>
 </div>
 
-    {% if error %}
-        <p>{{ error }}</p>
-    {% endif %}
+{% if error %}
+    <p>{{ error }}</p>
+{% endif %}
 
 {% endblock %}
