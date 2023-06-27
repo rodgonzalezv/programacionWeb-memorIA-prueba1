@@ -40,7 +40,9 @@
                     <li class="nav-item">
                         <a class="nav-link" style="font-size: 18px; {% if request.path == '/quienes_somos' %}font-weight: bold; color:#336699; {% endif %}" href="{% url 'cambiaPass' %}">Cambiar Contraseña</a>
                     </li>
-                   
+                    <li class="nav-item">
+                        <a class="nav-link" style="font-size: 18px; {% if request.path == '/quienes_somos' %}font-weight: bold; color:#336699; {% endif %}" href="{% url 'suscripcion' %}">Suscripción</a>
+                    </li>                   
                     <li class="nav-item">
                         <a class="nav-link" style="font-size: 18px; {% if request.path == '/contacto' %}font-weight: bold; color:#336699; {% endif %}" href="{% url 'userLogout' %}">Cerrar Sesion</a>
                     </li>

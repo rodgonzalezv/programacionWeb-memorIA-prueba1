@@ -4,6 +4,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, UserChangeForm
+from .models import Planes
 
 UserModel = get_user_model()
 
@@ -39,3 +40,16 @@ class UserProfileForm(UserChangeForm):
     class Meta:
         model = UserModel
         fields = ['username','first_name', 'last_name']
+        
+        
+class SuscripcionForm(forms.Form):
+    plan = forms.ModelChoiceField(queryset=Planes.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['plan'].label_from_instance = lambda obj: obj.nombre
+        self.fields['plan'].widget.attrs.update({'class': 'form-control'})
+
+        self.helper = FormHelper()
+        self.helper.form_method = 'POST'
+        self.helper.add_input(Submit('submit', 'Seleccionar Suscripción'))

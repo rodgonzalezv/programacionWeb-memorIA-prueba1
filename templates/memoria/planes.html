@@ -16,14 +16,14 @@
             <h5 class="card-title">{{c.nombre}}</h5>
             <ul class="list-unstyled">
               <div class="card-body" style="height:200px; border:1px solid #black">
-                {{c.descripcion}}
+                {{c.descripcion|safe}}
               </div>
             </ul>
             <p class="text-center">
             {{ c.valor_factor }} UF (${{uf|mul:c.valor_factor|floatformat:0|intcomma }})<br>
             USD {{ uf|div:dolar|mul:c.valor_factor|floatformat:0 }}<br>
             BTC {{  bitcoin|div:uf|div:dolar|mul:c.valor_factor|floatformat:5 }}<br>
-            <a href="#" class="btn btn-primary btn-block btn-seleccionar">Seleccionar</a>
+            <a href="{% url 'suscripcion' %}" class="btn btn-primary btn-block btn-seleccionar">Seleccionar</a>
             </p>            
           </div>
         </div>

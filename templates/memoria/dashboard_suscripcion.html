@@ -1,0 +1,47 @@
+{% extends 'memoria/dashboard_base.html' %} 
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .abs-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40vh;
+      }
+      
+    .mi_input{
+        border:1px solid #red;
+    }
+
+</style>
+
+<div class="container">
+
+
+    <h1>Dashboard de suscripción</h1>
+
+    <h2>Crear Suscripción</h2>
+    <form method="post">
+      {% csrf_token %}
+      {% crispy form %}
+    </form>
+
+
+    {% if planes_asociados %}
+    <ul>
+      {% for suscripcion in planes_asociados %}
+        <li>
+          Usuario: {{ suscripcion.id_usuario.username }} - Plan: {{ suscripcion.id_plan.nombre }} - Estado: {{ suscripcion.estado }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No tienes suscripciones.</p>
+  {% endif %}
+</div>
+
+{% if error %}
+    <p>{{ error }}</p>
+{% endif %}
+
+{% endblock %}

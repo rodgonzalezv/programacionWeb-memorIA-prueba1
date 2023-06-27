@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.core.validators import MaxLengthValidator
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
 
 class Memorial(models.Model):
     id_memorial=models.AutoField(primary_key=True)
@@ -105,8 +106,8 @@ class Usuarios(models.Model):
 class Usuarios_Planes(models.Model):
     id_plan_usuario=models.AutoField(primary_key=True)
     id_plan=models.ForeignKey(Planes, on_delete=models.CASCADE)
-    id_usuario=models.ForeignKey(Usuarios, on_delete=models.CASCADE)
-    estado_plan=models.IntegerField()
+    id_usuario=models.ForeignKey(User, on_delete=models.CASCADE)
+    estado=models.IntegerField(default=0)
 
     def __str__(self):
-        return f"Usuarios_Planes {self.fk}"
+        return f"Usuario: {self.id_usuario.username} - Plan: {self.id_plan.nombre} - Estado: {self.estado}"

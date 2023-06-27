@@ -8,9 +8,9 @@ from django.shortcuts import render, redirect, get_object_or_404, render, redire
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
-from .models import Memorial, Planes
+from .models import Memorial, Planes, Usuarios_Planes
 import requests
-from .forms import formUserRegistro, CustomChangePasswordForm, UserProfileForm
+from .forms import formUserRegistro, CustomChangePasswordForm, UserProfileForm, SuscripcionForm
 
 
 
@@ -59,12 +59,10 @@ def userLogin(request):
             return render(request, 'memoria/userLogin.html')
     else:
         return render(request, 'memoria/userLogin.html')
-
     
 def userLogout(request):
     logout(request)
     return redirect("userLogin")   
-
     
 @login_required
 def dashboard(request):
@@ -142,3 +140,37 @@ def user_profile(request):
         form = UserProfileForm(instance=request.user)
     return render(request, 'memoria/dashboard_perfil.html', {'form': form})
     
+@login_required
+def dashboard_suscripcion(request):
+    user = request.user
+
+    # Verificar si el usuario ya tiene una suscripción existente
+    suscripcion_existente = Usuarios_Planes.objects.filter(id_usuario=user.id).first()
+
+    if suscripcion_existente:
+        # El usuario ya tiene una suscripción existente, actualizarla
+        form = SuscripcionForm(request.POST or None, initial={'plan': suscripcion_existente.id_plan})
+        if request.method == 'POST':
+            if form.is_valid():
+                suscripcion_existente.id_plan = form.cleaned_data['plan']
+                suscripcion_existente.save()
+                return redirect('suscripcion')
+    else:
+        # El usuario no tiene una suscripción existente, crear una nueva
+        form = SuscripcionForm(request.POST or None)
+        if request.method == 'POST':
+            if form.is_valid():
+                plan = form.cleaned_data['plan']
+                estado = 0
+                Usuarios_Planes.objects.create(id_usuario=user, id_plan=plan, estado=estado)
+                return redirect('suscripcion')
+    
+    planes_asociados = Usuarios_Planes.objects.filter(id_usuario=user.id)
+        
+    context = {
+        'form': form,
+        'planes_asociados': planes_asociados,
+    }        
+
+    return render(request, 'memoria/dashboard_suscripcion.html', context)
+

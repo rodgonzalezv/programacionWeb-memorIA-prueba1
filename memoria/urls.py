@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from . import views
-from .views import home, quienes_somos, planes, galeria, contacto, userLogin, userLogout, dashboard, userRegistro, activar_cuenta, CustomChangePasswordView
+from .views import home, quienes_somos, planes, galeria, contacto, userLogin, userLogout, dashboard, userRegistro, activar_cuenta, CustomChangePasswordView, dashboard_suscripcion
 
 
 urlpatterns = [
@@ -19,4 +19,5 @@ urlpatterns = [
     path('cambiaPass/', CustomChangePasswordView.as_view(), name='cambiaPass'),
     path('cambiaPass/logout', userLogout, name='cambiaPass/logout'),
     path('perfil', views.user_profile, name='perfil'),
+    path('suscripcion', views.dashboard_suscripcion, name='suscripcion'),
 ]
