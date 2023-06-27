@@ -1,4 +1,6 @@
 {% extends 'memoria/dashboard_base.html' %} 
+{% load mathfilters %}
+{% load humanize %}
 {% load crispy_forms_tags %}
 {% block content %}
 <style>
@@ -42,11 +44,26 @@
           Capacidad para {{ suscripcion.id_plan.cantidad }} familiares
         </li> 
         <li>
-          Valor: {{ suscripcion.id_plan.valor }}
+          Valor: {{ suscripcion.id_plan.valor_factor|mul:uf }}
         </li>                 
         <li>
-          Estado: {{ suscripcion.estado }}
+          Estado: {{ suscripcion.estado }}{{ uf }}
+        </li>
+        
+        {% if suscripcion.estado == 0 %}
+        <li>
+          <form action="" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="suscripcion_id" value="{{ suscripcion.id }}">
+            <button type="submit" class="btn btn-primary">Pagar suscripción</button>
+          </form>
+        </li>
+      {% else %}
+        <li>
+          Estado: {{ suscripcion.estado }}{{ uf }}
         </li>                
+      {% endif %}        
+        
       {% endfor %}
     </ul>
   {% else %}

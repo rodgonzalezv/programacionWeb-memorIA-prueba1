@@ -43,7 +43,8 @@ class UserProfileForm(UserChangeForm):
         
         
 class SuscripcionForm(forms.Form):
-    plan = forms.ModelChoiceField(queryset=Planes.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
+    plan = forms.ModelChoiceField(queryset=Planes.objects.all(), widget=forms.Select(attrs={'class': 'form-control', 'onchange': 'this.form.submit();'}))
+    
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -52,4 +53,3 @@ class SuscripcionForm(forms.Form):
 
         self.helper = FormHelper()
         self.helper.form_method = 'POST'
-        self.helper.add_input(Submit('submit', 'Seleccionar Suscripción'))
