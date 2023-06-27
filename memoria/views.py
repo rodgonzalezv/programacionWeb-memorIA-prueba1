@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash, get_user_model
@@ -8,9 +9,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
-from .models import Memorial, Planes, Usuarios_Planes
+from .models import Memorial, Planes, Usuarios_Planes, Familiares
 import requests
-from .forms import formUserRegistro, CustomChangePasswordForm, UserProfileForm, SuscripcionForm
+import os
+from .forms import formUserRegistro, formFamiliarRegistro, formFamiliarUpdate, CustomChangePasswordForm, UserProfileForm, SuscripcionForm
 
 
 
@@ -53,7 +55,7 @@ def userLogin(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('dashboard')
+            return redirect('dashboard_home')
         else:
             messages.error(request, 'Contraseña incorrecta')
             return render(request, 'memoria/userLogin.html')
@@ -65,7 +67,7 @@ def userLogout(request):
     return redirect("userLogin")   
     
 @login_required
-def dashboard(request):
+def dashboard_home(request):
     return render(request, 'memoria/dashboard_home.html')
 
 def userRegistro(request):
@@ -100,7 +102,7 @@ def userRegistro(request):
                 html_message=contenido_html
             )
             messages.success(request, 'Registro exitoso. Se ha enviado un correo electrónico para activar tu cuenta.')
-            return redirect('dashboard')  
+            return redirect('dashboard_home')  
     else:
         form = formUserRegistro()
     return render(request, 'memoria/userRegistro.html', {'userRegistro': form})
@@ -135,7 +137,7 @@ def user_profile(request):
         form = UserProfileForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('dashboard')
+            return redirect('dashboard_home')
     else:
         form = UserProfileForm(instance=request.user)
     return render(request, 'memoria/dashboard_perfil.html', {'form': form})
@@ -154,7 +156,7 @@ def dashboard_suscripcion(request):
             if form.is_valid():
                 suscripcion_existente.id_plan = form.cleaned_data['plan']
                 suscripcion_existente.save()
-                return redirect('suscripcion')
+                return redirect('dashboard_suscripcion')
     else:
         # El usuario no tiene una suscripción existente, crear una nueva
         form = SuscripcionForm(request.POST or None)
@@ -163,7 +165,7 @@ def dashboard_suscripcion(request):
                 plan = form.cleaned_data['plan']
                 estado = 0
                 Usuarios_Planes.objects.create(id_usuario=user, id_plan=plan, estado=estado)
-                return redirect('suscripcion')
+                return redirect('dashboard_suscripcion')
     
     planes_asociados = Usuarios_Planes.objects.filter(id_usuario=user.id)
         
@@ -173,4 +175,89 @@ def dashboard_suscripcion(request):
     }        
 
     return render(request, 'memoria/dashboard_suscripcion.html', context)
+
+def familiarRegistro(request):
+    if request.method == 'POST':
+        form = formFamiliarRegistro(request.POST)
+        if form.is_valid():
+            names = form.cleaned_data['names']
+            lastnames = form.cleaned_data['lastnames']
+            date_of_birth = form.cleaned_data['date_of_birth']
+            date_of_death = form.cleaned_data['date_of_death']
+            relationship = form.cleaned_data['relationship']
+            nationality = form.cleaned_data['nationality']
+            if 'avatar_picture' in request.FILES:
+                picture = request.FILES['avatar_picture']
+                picture_path = os.path.join(settings.MEDIA_ROOT, picture.name)
+                with open(picture_path, 'wb') as f:
+                    for chunk in picture.chunks():
+                        f.write(chunk)
+
+            familiar = Familiares(
+                nombre_familiar=names,
+                apellidos_familiar=lastnames,
+                fecha_nacimiento=date_of_birth,
+                fecha_deceso=date_of_death,
+                parentezco=relationship,
+                nacionalidad=nationality,                
+            )
+            familiar.user_id=request.user.id
+            familiar.save()
+            messages.success(request, 'Familiar creado exitosamente.')
+            return redirect('dashboard_familiarListado')
+            
+    else:
+        form = formFamiliarRegistro()
+        form.fields['user_id'].initial = request.user.id
+    
+    context = {'form': form}
+    return render(request, 'memoria/dashboard_familiarRegistro.html', context)
+
+@login_required
+def familiarListado(request):
+    familiares = Familiares.objects.filter(user=request.user)
+
+    # Create a list of dictionaries containing the desired information
+    familiares_data = []
+    for familiar in familiares:
+        data = {
+            'id_familiar':familiar.id_familiar,
+            'nombre_apellidos': f'{familiar.nombre_familiar} {familiar.apellidos_familiar}',
+            'edad': familiar.fecha_deceso.year - familiar.fecha_nacimiento.year,
+            'parentezco': familiar.parentezco,
+            'fecha_deceso': familiar.fecha_deceso,
+        }
+        familiares_data.append(data)
+
+    context = {
+        'familiares': familiares_data,
+    }
+    return render(request, 'memoria/dashboard_familiarListado.html', context)
+
+@login_required
+def familiarUpdate(request, familiar_id):
+    familiar = get_object_or_404(Familiares, id_familiar=familiar_id, user=request.user)
+
+    if request.method == 'POST':
+        form = formFamiliarUpdate(request.POST, instance=familiar)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard_familiarListado')
+    else:
+        form = formFamiliarUpdate(instance=familiar)
+
+    context = {'form': form}
+    return render(request, 'memoria/dashboard_familiarUpdate.html', context)
+
+
+@login_required
+def familiarDelete(request, familiar_id):
+    familiar = get_object_or_404(Familiares, id_familiar=familiar_id, user=request.user)
+
+    if request.method == 'POST':
+        familiar.delete()
+        messages.success(request, 'Familiar eliminado exitosamente.')
+        return redirect('dashboard_familiarListado')
+
+    return render(request, 'memoria/dashboard_familiarListado.html', {'familiar': familiar})
 

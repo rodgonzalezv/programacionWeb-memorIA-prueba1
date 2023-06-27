@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from . import views
-from .views import home, quienes_somos, planes, galeria, contacto, userLogin, userLogout, dashboard, userRegistro, activar_cuenta, CustomChangePasswordView, dashboard_suscripcion
+from .views import home, quienes_somos, planes, galeria, contacto, userLogin, userLogout, dashboard_home, userRegistro, activar_cuenta, familiarRegistro, familiarListado, familiarUpdate, familiarDelete, CustomChangePasswordView, dashboard_suscripcion
 
 
 urlpatterns = [
@@ -11,7 +11,11 @@ urlpatterns = [
     path("planes", planes, name="planes"),
     path("galeria", galeria, name="galeria"),
     path("contacto", contacto, name="contacto"),
-    path("dashboard", dashboard, name="dashboard"),
+    path("dashboard_home", dashboard_home, name="dashboard_home"),
+    path('dashboard_familiarRegistro', familiarRegistro, name='dashboard_familiarRegistro'),
+    path('dashboard_familiarListado', familiarListado, name='dashboard_familiarListado'),
+    path('familiarDelete/<int:familiar_id>/', familiarDelete, name='familiarDelete'),
+    path('dashboard_familiarUpdate/<int:familiar_id>/', familiarUpdate, name='dashboard_familiarUpdate'),
     path('userLogin', userLogin, name='userLogin'),
     path('userLogout', userLogout, name='userLogout'),
     path('userRegistro', userRegistro, name='userRegistro'),
@@ -19,5 +23,5 @@ urlpatterns = [
     path('cambiaPass/', CustomChangePasswordView.as_view(), name='cambiaPass'),
     path('cambiaPass/logout', userLogout, name='cambiaPass/logout'),
     path('perfil', views.user_profile, name='perfil'),
-    path('suscripcion', views.dashboard_suscripcion, name='suscripcion'),
+    path('dashboard_suscripcion', views.dashboard_suscripcion, name='dashboard_suscripcion'),
 ]

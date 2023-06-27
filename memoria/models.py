@@ -62,13 +62,13 @@ class Familiares(models.Model):
         )
     
     id_familiar=models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     nombre_familiar=models.CharField(max_length=100)
     apellidos_familiar=models.CharField(max_length=100)
     fecha_nacimiento=models.DateField(auto_now=False, auto_now_add=False)
     fecha_deceso=models.DateField(auto_now=False, auto_now_add=False)
+    parentezco = models.CharField(max_length=100)
     nacionalidad = models.CharField(max_length=2, choices=OPC_NACIONALIDAD, default='CL')
-    rut_familiar=models.CharField(max_length=8, validators=[MaxLengthValidator(8)], null=False, default=12345678)
-    dv_familiar=models.CharField(max_length=1, validators=[MaxLengthValidator(1)], null=False, default=0)
     
 
     def __str__(self):
