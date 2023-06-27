@@ -18,21 +18,35 @@
 <div class="container">
 
 
-    <h1>Dashboard de suscripción</h1>
-
-    <h2>Crear Suscripción</h2>
+    <h2>Seleccione Suscripcion</h2>
     <form method="post">
       {% csrf_token %}
       {% crispy form %}
     </form>
 
 
+<hr>
+    <h2>Esta es la suscripcion seleccionada.</h2>
+
+
     {% if planes_asociados %}
     <ul>
       {% for suscripcion in planes_asociados %}
         <li>
-          Usuario: {{ suscripcion.id_usuario.username }} - Plan: {{ suscripcion.id_plan.nombre }} - Estado: {{ suscripcion.estado }}
+          Plan: {{ suscripcion.id_plan.nombre }} - Estado: {{ suscripcion.estado }}
         </li>
+        <li>
+          Descripción: {{ suscripcion.id_plan.descripcion }}
+        </li> 
+        <li>
+          Capacidad para {{ suscripcion.id_plan.cantidad }} familiares
+        </li> 
+        <li>
+          Valor: {{ suscripcion.id_plan.valor }}
+        </li>                 
+        <li>
+          Estado: {{ suscripcion.estado }}
+        </li>                
       {% endfor %}
     </ul>
   {% else %}
