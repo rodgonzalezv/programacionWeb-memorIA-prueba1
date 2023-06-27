@@ -53,3 +53,4 @@ class SuscripcionForm(forms.Form):
 
         self.helper = FormHelper()
         self.helper.form_method = 'POST'
+        
