@@ -266,3 +266,11 @@ def familiarDelete(request, familiar_id):
 
     return render(request, 'memoria/dashboard_familiarListado.html', {'familiar': familiar})
 
+def pago_exitoso(request):
+    usuario_plan = Usuarios_Planes.objects.filter(id_usuario=request.user, estado=0).first()
+
+    if usuario_plan:
+        usuario_plan.estado = 1
+        usuario_plan.save()
+
+    return redirect('dashboard_suscripcion')
