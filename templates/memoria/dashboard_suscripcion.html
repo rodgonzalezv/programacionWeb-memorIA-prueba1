@@ -42,16 +42,13 @@
         </li> 
 
         <li>
-          Valor: ${{ suscripcion.id_plan.valor_factor|mul:uf|floatformat:0 }}
+          Valor: ${{ suscripcion.id_plan.valor_factor|mul:uf|floatformat:0 }} 
         </li>                 
         {% if suscripcion.estado == 0 %}
         <br>
-          <form action="#" method="POST">
-            {% csrf_token %}
-            <input type="hidden" name="suscripcion_id" value="{{ suscripcion.id }}">
-            <button type="submit" class="btn btn-primary">Pagar suscripción</button>
-          </form>
-        
+        <script src="https://www.mercadopago.cl/integrations/v1/web-payment-checkout.js"
+        data-preference-id="{{ suscripcion.id_plan.link_pago }}" data-source="button">
+        </script>
       {% else %}
         
           Estado: {{ suscripcion.estado }}{{ uf }}
