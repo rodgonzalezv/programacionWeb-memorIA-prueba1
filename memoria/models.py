@@ -25,6 +25,7 @@ class Planes(models.Model):
     descripcion=models.TextField()
     cantidad = models.IntegerField()
     valor_factor = models.IntegerField()
+    link_pago=models.CharField(max_length=50)
 
     class Meta:
         verbose_name = ("Planes")

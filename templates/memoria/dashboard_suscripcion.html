@@ -1,4 +1,6 @@
 {% extends 'memoria/dashboard_base.html' %} 
+{% load mathfilters %}
+{% load humanize %}
 {% load crispy_forms_tags %}
 {% block content %}
 <style>
@@ -33,20 +35,28 @@
     <ul>
       {% for suscripcion in planes_asociados %}
         <li>
-          Plan: {{ suscripcion.id_plan.nombre }} - Estado: {{ suscripcion.estado }}
+          Plan: {{ suscripcion.id_plan.nombre }}
         </li>
         <li>
-          Descripción: {{ suscripcion.id_plan.descripcion }}
+          Descripción: {{ suscripcion.id_plan.descripcion|safe }}
         </li> 
+
         <li>
-          Capacidad para {{ suscripcion.id_plan.cantidad }} familiares
-        </li> 
-        <li>
-          Valor: {{ suscripcion.id_plan.valor }}
+          Valor: ${{ suscripcion.id_plan.valor_factor|mul:uf|floatformat:0 }}
         </li>                 
-        <li>
-          Estado: {{ suscripcion.estado }}
-        </li>                
+        {% if suscripcion.estado == 0 %}
+        <br>
+          <form action="#" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="suscripcion_id" value="{{ suscripcion.id }}">
+            <button type="submit" class="btn btn-primary">Pagar suscripción</button>
+          </form>
+        
+      {% else %}
+        
+          Estado: {{ suscripcion.estado }}{{ uf }}
+        
+      {% endif %}              
       {% endfor %}
     </ul>
   {% else %}

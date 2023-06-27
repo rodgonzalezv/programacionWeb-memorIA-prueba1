@@ -145,12 +145,16 @@ def user_profile(request):
 @login_required
 def dashboard_suscripcion(request):
     user = request.user
+    
+    url = 'https://mindicador.cl/api'
+    response = requests.get(url)
+    data = response.json()
+    uf_value = data['uf']['valor']
 
-    # Verificar si el usuario ya tiene una suscripción existente
     suscripcion_existente = Usuarios_Planes.objects.filter(id_usuario=user.id).first()
 
     if suscripcion_existente:
-        # El usuario ya tiene una suscripción existente, actualizarla
+
         form = SuscripcionForm(request.POST or None, initial={'plan': suscripcion_existente.id_plan})
         if request.method == 'POST':
             if form.is_valid():
@@ -158,7 +162,7 @@ def dashboard_suscripcion(request):
                 suscripcion_existente.save()
                 return redirect('dashboard_suscripcion')
     else:
-        # El usuario no tiene una suscripción existente, crear una nueva
+
         form = SuscripcionForm(request.POST or None)
         if request.method == 'POST':
             if form.is_valid():
@@ -172,6 +176,7 @@ def dashboard_suscripcion(request):
     context = {
         'form': form,
         'planes_asociados': planes_asociados,
+        "uf": uf_value,
     }        
 
     return render(request, 'memoria/dashboard_suscripcion.html', context)
