@@ -36,7 +36,7 @@
           Plan: {{ suscripcion.id_plan.nombre }} - Estado: {{ suscripcion.estado }}
         </li>
         <li>
-          Descripción: {{ suscripcion.id_plan.descripcion }}
+          Descripción: {{ suscripcion.id_plan.descripcion|safe }}
         </li> 
         <li>
           Capacidad para {{ suscripcion.id_plan.cantidad }} familiares
