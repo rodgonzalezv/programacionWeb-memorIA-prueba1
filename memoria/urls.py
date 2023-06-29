@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from . import views
-from .views import home, quienes_somos, planes, galeria, contacto, userLogin, userLogout, dashboard_home, userRegistro, activar_cuenta, familiarRegistro, familiarListado, familiarUpdate, familiarDelete, CustomChangePasswordView, dashboard_suscripcion, pago_exitoso
+from .views import home, quienes_somos, planes, galeria, contacto, userLogin, userLogout, dashboard_home, userRegistro, activar_cuenta, familiarRegistro, familiarListado, familiarUpdate, familiarDelete, CustomChangePasswordView, dashboard_suscripcion, pago_exitoso, queplan
 
 
 urlpatterns = [
@@ -25,5 +25,6 @@ urlpatterns = [
     path('perfil', views.user_profile, name='perfil'),
     path('dashboard_suscripcion', views.dashboard_suscripcion, name='dashboard_suscripcion'),
     path('pagoexitoso', pago_exitoso, name='pagoexitoso'),
+    path('queplan/', views.queplan, name='queplan'),
 
 ]

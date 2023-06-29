@@ -222,7 +222,13 @@ def familiarRegistro(request):
 @login_required
 def familiarListado(request):
     familiares = Familiares.objects.filter(user=request.user)
-
+def suscripcion(request):
+    usuario = request.user
+    suscripcion = Usuarios_Planes.objects.filter(id_usuario=usuario).first()
+    context = {
+        'suscripcion': suscripcion
+    }
+    return render(request, 'suscripcion.html', context)
     # Create a list of dictionaries containing the desired information
     familiares_data = []
     for familiar in familiares:
@@ -275,3 +281,35 @@ def pago_exitoso(request):
         usuario_plan.save()
 
     return redirect('dashboard_suscripcion')
+
+
+def queplan(request):
+    usuario = request.user
+    mensaje = ""
+    nombre_plan = ""
+    estado = ""
+    fecha_activacion = ""
+
+    try:
+        registro = Usuarios_Planes.objects.get(id_usuario=usuario.id)
+        estado = registro.estado
+        fecha_activacion = registro.fecha_activacion
+
+        if estado == 0:
+            mensaje = "Tienes una suscripción elegida, pero no la has activado."
+        elif estado == 1:
+            mensaje = "Esta es tu suscripción."
+            plan = registro.id_plan
+            nombre_plan = plan.nombre
+
+    except Usuarios_Planes.DoesNotExist:
+        mensaje = "No tienes ninguna suscripción elegida."
+
+    context = {
+        'mensaje': mensaje,
+        'nombre_plan': nombre_plan,
+        'estado': estado,
+        'fecha_activacion': fecha_activacion
+    }
+
+    return render(request, 'memoria/dashboard_base.html', context)

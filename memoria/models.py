@@ -3,6 +3,7 @@ from django.conf import settings
 from django.core.validators import MaxLengthValidator
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
+from datetime import date
 
 class Memorial(models.Model):
     id_memorial=models.AutoField(primary_key=True)
@@ -109,6 +110,7 @@ class Usuarios_Planes(models.Model):
     id_plan=models.ForeignKey(Planes, on_delete=models.CASCADE)
     id_usuario=models.ForeignKey(User, on_delete=models.CASCADE)
     estado=models.IntegerField(default=0)
+    fecha_act=models.DateField(auto_now_add=False, default=date.today)
 
     def __str__(self):
         return f"Usuario: {self.id_usuario.username} - Plan: {self.id_plan.nombre} - Estado: {self.estado}"
