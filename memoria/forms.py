@@ -7,6 +7,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, UserChangeForm
 from .models import Planes
 from .models import Familiares
+from django.core.exceptions import ValidationError
 
 UserModel = get_user_model()
 
@@ -96,12 +97,24 @@ class formFamiliarRegistro(forms.Form):
 
     ##picture = forms.ImageField(label='Imagen')
 
+    def clean(self):
+        cleaned_data = super().clean()
+        date_of_birth = cleaned_data.get('date_of_birth')
+        date_of_death = cleaned_data.get('date_of_death')
+
+        if date_of_birth and date_of_death:
+            if date_of_birth >= date_of_death:
+                raise ValidationError("La fecha de nacimiento debe ser anterior a la fecha de deceso.")
+
+        return cleaned_data
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_class = 'form-control'
         self.helper.form_method = 'post'
         self.helper.add_input(Submit('submit', 'Registrar'))
+
 
 class formFamiliarUpdate(forms.ModelForm):
     class Meta:
@@ -123,3 +136,12 @@ class formFamiliarUpdate(forms.ModelForm):
             'parentezco': forms.TextInput(attrs={'class': 'form-control'}),
             'nacionalidad': forms.Select(attrs={'class': 'form-control'}),
         }
+    def clean(self):
+        cleaned_data = super().clean()
+        fecha_nacimiento = cleaned_data.get('fecha_nacimiento')
+        fecha_deceso = cleaned_data.get('fecha_deceso')
+
+        if fecha_nacimiento and fecha_deceso and fecha_deceso < fecha_nacimiento:
+            raise ValidationError("La fecha de deceso debe ser posterior a la fecha de nacimiento.")
+
+        return cleaned_data

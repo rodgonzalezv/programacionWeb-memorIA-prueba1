@@ -93,6 +93,11 @@
             <div class="form-fields">
                 <form method="post" class="formFamiliar" >
                     {% csrf_token %}
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
                     <div class="form-group">
                         {{ form.names.label_tag }}
                         {{ form.names }}
