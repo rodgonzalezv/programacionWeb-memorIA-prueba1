@@ -15,13 +15,14 @@
     }
 
     .form-container {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        margin-top: 40px;
-        margin-bottom: 40px;
-        margin-left: 10px;
-        margin-right: 10px;
+        position: relative;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 10px;
+        padding-top: 60px;
+        padding-left: 60px;
+        padding-right: 60px;
+        padding-bottom: 60px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .form-fields {
@@ -29,14 +30,12 @@
     }
 
     .avatar-container {
-        width: 30%;
-        display: flex;
-        flex-direction: column;
-        align-items: right;
-        justify-content: center;        
-        margin-bottom: 40px;
-        margin-left: 20px;
-        margin-right: 20px
+        position: center;
+        top: 0;
+        right: 0;
+        margin-top: 10px;
+        margin-right: px;
+        z-index: 1;
     }
 
     .avatar-preview {
@@ -59,6 +58,12 @@
         display: none;
     }
 
+    body {
+        background-image: url("{% static 'img/cloudsbackground.png' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
 </style>
 
 <script>
@@ -86,10 +91,14 @@
 
 <h1>Registro de familiares</h1>
 <div class="container">
-    
     <div class="abs-center">
-        
         <div class="form-container">
+            <div class="avatar-container">
+                <div id="avatar-preview" class="avatar-preview" onclick="openAvatarUpload(event)">
+                    <img id="avatar-image" class="avatar-image" src="{% static 'img/usersilhouette.png' %}" alt="Silhouette">
+                </div>
+                <input type="file" id="avatar-input" accept="image/*" onchange="previewAvatar(event)">
+            </div>
             <div class="form-fields">
                 <form method="post" class="formFamiliar" >
                     {% csrf_token %}
@@ -99,27 +108,27 @@
                         </div>
                     {% endif %}
                     <div class="form-group">
-                        {{ form.names.label_tag }}
+                        <label for="{{ form.names.id_for_label }}" class="form-label">{{ form.names.label }}</label>
                         {{ form.names }}
                     </div>
                     <div class="form-group">
-                        {{ form.lastnames.label_tag }}
+                        <label for="{{ form.lastnames.id_for_label }}" class="form-label">{{ form.lastnames.label }}</label>
                         {{ form.lastnames }}
                     </div>
                     <div class="form-group">
-                        {{ form.date_of_birth.label_tag }}
+                        <label for="{{ form.date_of_birth.id_for_label }}" class="form-label">{{ form.date_of_birth.label }}</label>
                         {{ form.date_of_birth }}
                     </div>
                     <div class="form-group">
-                        {{ form.date_of_death.label_tag }}
+                        <label for="{{ form.date_of_death.id_for_label }}" class="form-label">{{ form.date_of_death.label }}</label>
                         {{ form.date_of_death }}
                     </div>
                     <div class="form-group">
-                        {{ form.relationship.label_tag }}
+                        <label for="{{ form.relationship.id_for_label }}" class="form-label">{{ form.relationship.label }}</label>
                         {{ form.relationship }}
                     </div>
                     <div class="form-group">
-                        {{ form.nationality.label_tag }}
+                        <label for="{{ form.nationality.id_for_label }}" class="form-label">{{ form.nationality.label }}</label>
                         {{ form.nationality }}
                     </div>
                     <div class="form-group">
@@ -129,19 +138,14 @@
 
                     <input type="hidden" id="avatar-picture-input" name="avatar_picture">
 
-                    </br>
+                    <br>
                     <button type="submit" class="btn btn-primary">Registrar familiar</button>
                 </form>
-            </div>
-            <div class="avatar-container">
-                <div id="avatar-preview" class="avatar-preview" onclick="openAvatarUpload(event)">
-                    <img id="avatar-image" class="avatar-image" src="{% static 'img/usersilhouette.png' %}" alt="Silhouette">
-                </div>
-                <input type="file" id="avatar-input" accept="image/*" onchange="previewAvatar(event)">
             </div>
         </div>
     </div>
 </div>
+
 
 {% if error %}
     <p>{{ error }}</p>
