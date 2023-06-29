@@ -208,8 +208,9 @@ def familiarRegistro(request):
             )
             familiar.user_id=request.user.id
             familiar.save()
-            messages.success(request, 'Familiar creado exitosamente.')
+            #messages.success(request, 'Familiar creado exitosamente.')
             return redirect('dashboard_familiarListado')
+            
             
     else:
         form = formFamiliarRegistro()
@@ -261,7 +262,7 @@ def familiarDelete(request, familiar_id):
 
     if request.method == 'POST':
         familiar.delete()
-        messages.success(request, 'Familiar eliminado exitosamente.')
+        #messages.success(request, 'Familiar eliminado exitosamente.')
         return redirect('dashboard_familiarListado')
 
     return render(request, 'memoria/dashboard_familiarListado.html', {'familiar': familiar})
